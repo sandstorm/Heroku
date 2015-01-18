@@ -1,0 +1,11 @@
+
+TYPO3:
+  Flow:
+    persistence:
+      backendOptions:
+        driver: pdo_mysql
+        dbname: %ENV_DB_NAME%
+        user: %ENV_DB_USER%
+        password: %ENV_DB_PASSWORD%
+        host: %ENV_DB_HOST%
+        port: %ENV_DB_PORT%
