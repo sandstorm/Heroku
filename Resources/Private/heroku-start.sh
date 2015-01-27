@@ -14,7 +14,7 @@ compile_neos_js_css_if_needed() {
    bundle install
    npm install -g grunt-cli
 
-   grunt compile
+   grunt build
    echo "All Compiled!"
 }
 
