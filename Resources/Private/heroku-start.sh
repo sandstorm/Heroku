@@ -12,7 +12,7 @@ compile_neos_js_css_if_needed() {
    npm install
    echo "installing ruby dependencies"
    bundle install
-   npm install -g grunt
+   npm install -g grunt-cli
 
    grunt compile
    echo "All Compiled!"
