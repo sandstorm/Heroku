@@ -5,6 +5,25 @@ touch Data/Logs/System.log
 touch Data/Logs/Security.log
 touch Data/Logs/Query.log
 
+
+compile_neos_js_css_if_needed() {
+   cd Packages/Application/TYPO3.Neos/Scripts
+   echo "installing NPM dependencies"
+   npm install
+   echo "installing ruby dependencies"
+   bundle install
+   npm install -g grunt
+
+   grunt compile
+   echo "All Compiled!"
+}
+
+if [[ "$COMPILE_NEOS_JS_CSS" != "" ]]; then
+  echo "Asynchronously compiling Neos CSS and JS"
+  compile_neos_js_css_if_needed &
+fi
+
+
 # TODO explain why we do this here and not on build
 FLOW_CONTEXT=Production/Heroku ./flow resource:publish
 FLOW_CONTEXT=Production/Heroku ./flow doctrine:migrate
