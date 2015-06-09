@@ -48,7 +48,7 @@ Now here are some instructions on how to deploy your application to Dokku:
 
 <b>Optional: Access your project with ssh to configure your Flow instance</b>
 
-<code>dokku enter endomap-staging</code>
+<code>dokku enter your-project-name</code>
 
 Now, if you use any Flow commands be sure to always prefix <code>FLOW_CONTEXT=Production/Heroku</code> in order to address the correct context. Example:
 
