@@ -37,9 +37,10 @@ if [[ "$PRUNE_AND_IMPORT_SITE" != "" ]]; then
 
 fi
 
-if [[ "$PHP_DEV_MODE" = "" ]]; then
+if [[ "$PHP_DEV_MODE" != "" ]]; then
 
 	echo "!!! Development Mode: Disabling PHP OpCache"
+	echo "" >> Packages/Application/Sandstorm.Heroku/Resources/Private/fpm_custom.conf
 	echo "php_value[opcache.enable] = 0" >> Packages/Application/Sandstorm.Heroku/Resources/Private/fpm_custom.conf
 
 	echo "!!! Development Mode: Installing VIM"
