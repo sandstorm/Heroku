@@ -31,8 +31,9 @@ class HerokuCommandController extends \TYPO3\Flow\Cli\CommandController {
 
 		$composerJson = $this->loadComposerJson();
 
-		$this->addExtension('ext-mbstring', $composerJson);
-		$this->addExtension('ext-gd', $composerJson);
+		$this->addExtension('ext-mbstring', $composerJson, '*');
+		$this->addExtension('ext-gd', $composerJson, '*');
+		$this->addExtension('php', $composerJson, '^5.6.0');
 
 		$expectedPostInstallCmds = array();
 
@@ -53,13 +54,13 @@ class HerokuCommandController extends \TYPO3\Flow\Cli\CommandController {
 		}
 	}
 
-	protected function addExtension($extensionIdentifier, &$composerJson) {
+	protected function addExtension($extensionIdentifier, &$composerJson, $version) {
 		if (!isset($composerJson['require'][$extensionIdentifier])) {
-			$composerJson['require'][$extensionIdentifier] = '*';
+			$composerJson['require'][$extensionIdentifier] = $version;
 			$this->saveComposerJson($composerJson);
 			$this->outputLine('<comment>[ OK ]</comment> Added ' . $extensionIdentifier . ' to composer.json.');
-		} elseif ($composerJson['require'][$extensionIdentifier] !== '*') {
-			$this->outputLine('<error>[WARN]</error> composer.json requires ' . $extensionIdentifier . ' in a specific version instead of "*".');
+		} elseif ($composerJson['require'][$extensionIdentifier] !== $version) {
+			$this->outputLine('<error>[WARN]</error> composer.json requires ' . $extensionIdentifier . ' in a different version instead of "' . $version . '".');
 		} else {
 			$this->outputLine('<info>[ OK ]</info> composer.json requires ' . $extensionIdentifier);
 		}

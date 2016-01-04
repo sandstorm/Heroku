@@ -37,6 +37,19 @@ if [[ "$PRUNE_AND_IMPORT_SITE" != "" ]]; then
 
 fi
 
+if [[ "$PHP_DEV_MODE" = "" ]]; then
+
+	echo "!!! Development Mode: Disabling PHP OpCache"
+	echo "php_value[opcache.enable] = 0" >> Packages/Application/Sandstorm.Heroku/Resources/Private/fpm_custom.conf
+
+	echo "!!! Development Mode: Installing VIM"
+	curl https://s3.amazonaws.com/heroku-jvm-buildpack-vi/vim-7.3.tar.gz --output vim.tar.gz
+	mkdir vim && tar xzvf vim.tar.gz -C vim
+	export PATH=$PATH:/app/vim/bin
+fi
+
+
+
 bin/heroku-php-nginx \
 	-F Packages/Application/Sandstorm.Heroku/Resources/Private/fpm_custom.conf \
 	-C Packages/Application/Sandstorm.Heroku/Resources/Private/nginx.inc.conf \
