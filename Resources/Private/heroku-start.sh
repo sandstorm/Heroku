@@ -33,7 +33,7 @@ if [[ "$PRUNE_AND_IMPORT_SITE" != "" ]]; then
 	echo "Pruning site"
 	FLOW_CONTEXT=Production/Heroku ./flow site:prune
 	echo "Importing $PRUNE_AND_IMPORT_SITE"
-	FLOW_CONTEXT=Production/Heroku ./flow site:import --package-key $PRUNE_AND_IMPORT_SITE
+	FLOW_CONTEXT=Production/Heroku php -d memory_limit=2048m ./flow site:import --package-key $PRUNE_AND_IMPORT_SITE
 
 fi
 
