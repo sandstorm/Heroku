@@ -27,6 +27,7 @@ Execute the following steps to deploy the App to Dokku (commands below):
 1. make *Data/Persistent* persistent over updates
 1. create a database
 1. link the database with the App
+1. add domain to App
 1. set the baseUri
 1. set flow context
 1. add dokku as git remote
@@ -38,6 +39,7 @@ dokku create your-app
 dokku storage:mount your-app /home/dokku/your-app/DATA/app/Data/Persistent:/app/Data/Persistent
 dokku mariadb:create your-app
 dokku mariadb:link your-app your-app
+dokku domains:add your-app your-domain-to-the-app.de
 dokku config:set your-app BASE_URI=http://your-domain-to-the-app.de/
 dokku config:set your-app FLOW_CONTEXT=Production/Heroku
 git remote add dokku dokku@your-dokku-domain.de:your-app
