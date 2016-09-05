@@ -53,6 +53,26 @@ Careful: This deletes all content on every redeploy. Don't use in staging enviro
 dokku config:set your-app PRUNE_AND_IMPORT_SITE=Package.Key
 ```
 
+# Debugging of Dokku App
+
+## Access database
+
+If you want to access the database for debugging run:
+
+```
+dokku mariadb:expose your-app
+dokku mariadb:info your-app
+```
+
+### Access with SequelPro
+* Connection Type SSH
+* MySQL Host: 127.0.0.1
+* Username: username from `mariadb:info`
+* Password: password from `mariadb:info`
+* Port: port from `mariadb:expose`
+* SSH Host: dokku.your-domain.de
+* SSH User: you@dokku.your-domain.de
+
 ---
 
 # TODOs
