@@ -5,57 +5,49 @@ We at sandstorm|media use Dokku to deploy applications quickly and easily to our
 A Flow version greater or equal to 3.0 is mandatory.
 
 # Usage
-When using composer, you can conveniently add this package to your application by typing the following command in your command line: 
 
-<code>composer require sandstorm/heroku</code>
+1. When using composer, you can conveniently add this package to your application by typing the following command in your command line:  
+    `composer require sandstorm/heroku`
+2. After adding this package to your application, make your project ready for Dokku with this command:  
+    `./flow heroku:addToProject`
+3. Add the base URI placeholder to your *Settings.yaml*
 
-
-After adding this package to your application, make your project ready for Dokku with this command:
-
-<code>./flow heroku:addToProject</code>
+```
+TYPO3:
+  Flow:
+    http:
+      baseUri: %env:BASE_URI%
+```
 
 # Deployment on Dokku
 
-Now here are some instructions on how to deploy your application to Dokku:
+Execute the following steps to deploy the App to Dokku (commands below):
 
-<b>Create your Dokku container</b>
+1. create your Dokku App
+1. make *Data/Persistent* persistent over updates
+1. create a database
+1. link the database with the App
+1. set the baseUri
+1. add dokku as git remote
+1. push your project to Dokku
+1. (optional) access your project with ssh to configure your Flow instance
 
-<code>dokku create your-project-name</code>
+``` 
+dokku create your-app
+dokku storage:mount your-app /home/dokku/your-app/DATA/app/Data/Persistent:/app/Data/Persistent
+dokku mariadb:create your-app
+dokku mariadb:link your-app your-app
+dokku config:set automon-website BASE_URI=http://your-domain-to-the-app.de/
+git remote add dokku dokku@your-dokku-domain.de:your-app
+git push dokku master
+dokku enter your-app
+```
 
-<b>Create a volume for your persistent data</b>
+Now, if you use any Flow commands be sure to always prefix `FLOW_CONTEXT=Production/Heroku` in order to address the correct context. Example:
 
-<code>dokku volume:create your-project-name /app/Data/Persistent</code>
-
-<b>Map your volume to the container</b>
-
-<code>dokku volume:link your-project-name your-project-name</code>
-
-<b>Create a database for your project</b>
-
-<code>dokku mariadb:create your-project-name</code>
-
-<b>Map the database to your project</b>
-
-<code>dokku mariadb:link your-project-name your-project-name</code>
-
-<b>Define a remote branch for your Dokku instance</b>
-
-<code>git remote add dokku dokku@your-dokku-domain.de:your-project-name</code>
-
-<b>Push your project to Dokku</b>
-
-<code>git push dokku master</code>
-
-<b>Optional: Access your project with ssh to configure your Flow instance</b>
-
-<code>dokku enter your-project-name</code>
-
-Now, if you use any Flow commands be sure to always prefix <code>FLOW_CONTEXT=Production/Heroku</code> in order to address the correct context. Example:
-
-<code>FLOW_CONTEXT=Production/Heroku ./flow import:something Packages/Application/your-project-name/Tests/TestData/test.tab</code>
+`FLOW_CONTEXT=Production/Heroku ./flow import:something Packages/Application/your-app/Tests/TestData/test.tab`
 
 ---
-
 
 support for gerrit_update.php and gerrit.json
 
