@@ -28,6 +28,7 @@ Execute the following steps to deploy the App to Dokku (commands below):
 1. create a database
 1. link the database with the App
 1. set the baseUri
+1. set flow context
 1. add dokku as git remote
 1. push your project to Dokku
 1. (optional) access your project with ssh to configure your Flow instance
@@ -37,18 +38,24 @@ dokku create your-app
 dokku storage:mount your-app /home/dokku/your-app/DATA/app/Data/Persistent:/app/Data/Persistent
 dokku mariadb:create your-app
 dokku mariadb:link your-app your-app
-dokku config:set automon-website BASE_URI=http://your-domain-to-the-app.de/
+dokku config:set your-app BASE_URI=http://your-domain-to-the-app.de/
+dokku config:set your-app FLOW_CONTEXT=Production/Heroku
 git remote add dokku dokku@your-dokku-domain.de:your-app
 git push dokku master
 dokku enter your-app
 ```
 
-Now, if you use any Flow commands be sure to always prefix `FLOW_CONTEXT=Production/Heroku` in order to address the correct context. Example:
+# Prune and Import Site-Package on every Deploy
 
-`FLOW_CONTEXT=Production/Heroku ./flow import:something Packages/Application/your-app/Tests/TestData/test.tab`
+Careful: This deletes all content on every redeploy. Don't use in staging environments where customers work.
+
+```
+dokku config:set your-app PRUNE_AND_IMPORT_SITE=Package.Key
+```
 
 ---
 
-support for gerrit_update.php and gerrit.json
+# TODOs
 
-PRUNE_AND_IMPORT_SITE=<SitePackageKey>
+* support for gerrit_update.php and gerrit.json
+ 
