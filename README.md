@@ -53,7 +53,13 @@ Careful: This deletes all content on every redeploy. Don't use in staging enviro
 dokku config:set your-app PRUNE_AND_IMPORT_SITE=Package.Key
 ```
 
-# Debugging of Dokku App
+# Debugging and Trouble-Shooting
+
+## check status of App
+
+```
+dokku ls
+```
 
 ## Access database
 
@@ -78,4 +84,3 @@ dokku mariadb:info your-app
 # TODOs
 
 * support for gerrit_update.php and gerrit.json
- 
