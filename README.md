@@ -30,6 +30,7 @@ Execute the following steps to deploy the App to Dokku (commands below):
 1. add domain to App
 1. set the baseUri
 1. set flow context
+1. set database config
 1. add dokku as git remote
 1. push your project to Dokku
 1. (optional) access your project with ssh to configure your Flow instance
@@ -42,6 +43,7 @@ dokku mariadb:link your-app your-app
 dokku domains:add your-app your-domain-to-the-app.de
 dokku config:set your-app BASE_URI=http://your-domain-to-the-app.de/
 dokku config:set your-app FLOW_CONTEXT=Production/Heroku
+dokku config:set your-app DB_NAME=your-app-db DB_USER=mariadb DB_PASSWORD=super-secret DB_HOST=dokku-mariadb-your-app-db DB_PORT=3306
 git remote add dokku dokku@your-dokku-domain.de:your-app
 git push dokku master
 dokku enter your-app
