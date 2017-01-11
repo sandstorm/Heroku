@@ -9,7 +9,7 @@ This package is currently being maintained for Neos 2.3 LTS and Neos 3.x.
 
 | Neos / Flow Version        | Sandstorm.UserManagement Version | Maintained |
 |----------------------------|----------------------------------|------------|
-| Neos 3.x, Flow 4.x         | 0.5.x                            | Yes        |
+| Neos 3.x, Flow 4.x         | 2.0.x                            | Yes        |
 | Neos 2.3 LTS, Flow 3.3 LTS | 0.4.x                            | Yes        |
 
 # Usage
