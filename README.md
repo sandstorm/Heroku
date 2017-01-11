@@ -21,7 +21,7 @@ This package is currently being maintained for Neos 2.3 LTS and Neos 3.x.
 3. Add the base URI placeholder to your *Settings.yaml*
 
 ```
-TYPO3:
+Neos: #For Neos 2.3 LTS, the top-level key must be TYPO3 instead of Neos
   Flow:
     http:
       baseUri: %env:BASE_URI%
