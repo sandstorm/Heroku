@@ -4,6 +4,14 @@ We at sandstorm|media use Dokku to deploy applications quickly and easily to our
 # Prerequisites
 A Flow version greater or equal to 3.0 is mandatory.
 
+# Compatibility and Maintenance
+This package is currently being maintained for Neos 2.3 LTS and Neos 3.x.
+
+| Neos / Flow Version        | Sandstorm.UserManagement Version | Maintained |
+|----------------------------|----------------------------------|------------|
+| Neos 3.x, Flow 4.x         | 0.5.x                            | Yes        |
+| Neos 2.3 LTS, Flow 3.3 LTS | 0.4.x                            | Yes        |
+
 # Usage
 
 1. When using composer, you can conveniently add this package to your application by typing the following command in your command line:  
