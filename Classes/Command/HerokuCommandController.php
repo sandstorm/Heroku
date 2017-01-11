@@ -2,16 +2,16 @@
 namespace Sandstorm\Heroku\Command;
 
 /*                                                                        *
- * This script belongs to the TYPO3 Flow package "Sandstorm.Heroku".      *
+ * This script belongs to the Neos Flow package "Sandstorm.Heroku".      *
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * @Flow\Scope("singleton")
  */
-class HerokuCommandController extends \TYPO3\Flow\Cli\CommandController {
+class HerokuCommandController extends \Neos\Flow\Cli\CommandController {
 
 	const PROCFILE_CONTENTS = 'web: Packages/Application/Sandstorm.Heroku/Resources/Private/heroku-start.sh';
 
@@ -37,7 +37,7 @@ class HerokuCommandController extends \TYPO3\Flow\Cli\CommandController {
 
 		$expectedPostInstallCmds = array();
 
-		$expectedPostInstallCmds[] = 'TYPO3\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall';
+		$expectedPostInstallCmds[] = 'Neos\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall';
 
 		if (file_exists(FLOW_PATH_ROOT . 'gerrit.json') && file_exists(FLOW_PATH_ROOT . 'gerrit_update.php')) {
 			$expectedPostInstallCmds[] = "if [ -d '.heroku' ] ; then git config --global user.email 'PatchBot@foo.com'; git config --global user.name 'Patch Bot'; fi; php gerrit_update.php";

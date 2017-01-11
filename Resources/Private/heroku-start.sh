@@ -7,7 +7,7 @@ touch Data/Logs/Query.log
 
 
 compile_neos_js_css_if_needed() {
-   cd Packages/Application/TYPO3.Neos/Scripts
+   cd Packages/Neos/Neos.Neos/Scripts
    echo "installing NPM dependencies"
    npm install
    echo "installing ruby dependencies"

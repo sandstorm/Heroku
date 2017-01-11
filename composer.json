@@ -1,12 +1,12 @@
 {
     "name": "sandstorm/heroku",
-    "type": "typo3-flow-package",
-    "description": "Integration of TYPO3 Flow and Neos based projects with Heroku or Dokku PAAS Platform",
+    "type": "neos-package",
+    "description": "Integration of Flow and Neos based projects with Heroku or Dokku PAAS Platform",
     "keywords": ["PAAS", "heroku", "dokku", "docker", "typo3", "flow", "neos"],
     "homepage": "https://github.com/sandstorm/Heroku",
     "license": "MIT",
     "require": {
-        "typo3/flow": "*"
+        "neos/flow": "*"
     },
     "authors": [
         {
@@ -20,11 +20,11 @@
     	"source": "https://github.com/sandstorm/Heroku"
     },
     "autoload": {
-        "psr-0": {
-            "Sandstorm\\Heroku": "Classes"
+        "psr-4": {
+            "Sandstorm\\Heroku\\": "Classes"
         }
     },
     "conflict": {
-    	"typo3/flow": "<=2.3"
+    	"neos/flow": "<=2.3"
     }
 }
