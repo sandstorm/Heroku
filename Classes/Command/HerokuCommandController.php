@@ -33,7 +33,7 @@ class HerokuCommandController extends \Neos\Flow\Cli\CommandController {
 
 		$this->addExtension('ext-mbstring', $composerJson, '*');
 		$this->addExtension('ext-gd', $composerJson, '*');
-		$this->addExtension('php', $composerJson, '^5.6.0');
+		$this->addExtension('php', $composerJson, '~7.0.0');
 
 		$expectedPostInstallCmds = array();
 
