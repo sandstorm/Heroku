@@ -18,6 +18,7 @@ This package is currently being maintained for Neos 2.3 LTS and Neos 3.x.
     `composer require sandstorm/heroku`
 2. After adding this package to your application, make your project ready for Dokku with this command:  
     `./flow heroku:addToProject`
+    `composer update`
 3. Add the base URI placeholder to your *Settings.yaml*
 
 ```
