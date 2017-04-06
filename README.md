@@ -92,6 +92,14 @@ dokku mariadb:info your-app
 * SSH Host: dokku.your-domain.de
 * SSH User: you@dokku.your-domain.de
 
+## Increase Memory Limit of Container
+
+By default, the memory limit is 512 MB. To increase it, do the following:
+
+* copy [Resources/Private/fpm_custom.conf](./Resources/Private/fpm_custom.conf) to your own repository, e.g. into `./Heroku/fpm_custom.conf` and adjust the memory limit.
+* copy [Resources/Private/heroku-start.sh](./Resources/Private/heroku-start.sh) to your own repository, e.g. into `./Heroku/heroku-start.sh` and in the last command, adjust the path to the `fpm_custom.conf` you have just copied.
+* In `Procfile` of your distribution, reference your custom start script instead of the default one.
+
 ---
 
 # TODOs
